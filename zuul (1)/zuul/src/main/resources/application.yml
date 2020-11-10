@@ -1,6 +1,10 @@
 zuul:
   routes:
     service-a:
-      url: http://localhost:8181
+      path: /first/**
+      serviceId: 111
+      url: http://localhost:8181  #수동등록
     service-b:
-      url: http://localhost:8182
+      path: /second/**
+      serviceId: 222
+      url: http://localhost:8182  #수동등록
