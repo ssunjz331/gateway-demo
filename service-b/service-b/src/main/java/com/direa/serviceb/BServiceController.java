@@ -17,12 +17,14 @@ public class BServiceController {
 
     @GetMapping(path="/{serviceB_Id}")
     public String ServiceB(@PathVariable String serviceB_Id){
-//        String AServiceInfo = getAServiceInfo();
+        String Adetail = getA();
 //        return "Service B: "+serviceB_Id;
-        return remoteService.getAServiceInfo(serviceB_Id);
+        return remoteService.getA(serviceB_Id);
     }
 
-
+    private String getA(){
+        return new RemoteServiceImpl().getA("12345");
+    }
 
 
 
