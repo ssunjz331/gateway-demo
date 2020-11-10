@@ -6,15 +6,15 @@ import com.netflix.zuul.exception.ZuulException;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class RouteFilter extends ZuulFilter {
+public class PreFilter extends ZuulFilter {
     @Override
     public String filterType() {
-        return "route";
+        return "pre";
     }
 
     @Override
     public int filterOrder() {
-        return 1;
+        return 0;
     }
 
     @Override
@@ -25,11 +25,10 @@ public class RouteFilter extends ZuulFilter {
     @Override
     public Object run() throws ZuulException {
 
-        RequestContext ctx = RequestContext.getCurrentContext();
-        HttpServletRequest request = ctx.getRequest();
+//        RequestContext context = RequestContext.getCurrentContext();
+//        HttpServletRequest request = context.getRequest();
 
 
-        return null;
+        return "===prefilter test====";
     }
 }
-

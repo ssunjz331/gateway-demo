@@ -8,3 +8,19 @@ zuul:
       path: /second/**
       serviceId: 222
       url: http://localhost:8182  #수동등록
+
+hystrix:
+  command:
+    service-b:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
+service-a:
+  ribbon:
+    NIWSServerListClassName: com.netflix.loadbalancer.ConfigurationBasedServerList
+    ConnectTimeout: 1000
+    ReadTimeout: 3000
+    MaxTotalHttpConnections: 500
+    MaxConnectionsPerHost: 100
