@@ -1,0 +1,6 @@
+zuul:
+  routes:
+    service-a:
+      url: http://localhost:8181
+    service-b:
+      url: http://localhost:8182
