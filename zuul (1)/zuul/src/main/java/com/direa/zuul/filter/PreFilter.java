@@ -3,12 +3,17 @@ package com.direa.zuul.filter;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.cloud.netflix.zuul.filters.Route;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class PreFilter extends ZuulFilter {
+    private static Logger logger =  LoggerFactory.getLogger(PreFilter.class);
+
+
     @Override
     public String filterType() {
         return "pre";
@@ -74,6 +79,11 @@ public class PreFilter extends ZuulFilter {
 //            }
 //        });
 
+        RequestContext ctx = RequestContext.getCurrentContext();
+        HttpServletRequest request = ctx.getRequest();
+
+
+        logger.info(String.format("%s request to %s", request.getMethod(), request.getRequestURL().toString()));
 
 
         return "===prefilter test====";

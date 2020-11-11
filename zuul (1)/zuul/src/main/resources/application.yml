@@ -17,6 +17,21 @@ zuul:
       serviceId: 222
       stripPrefix: false
       url: http://localhost:8182  #수동등록
+#  ratelimit:
+#    enabled: true
+#    repository: JPA
+#    policy-list:
+#      service-a:
+#        - limit: 5
+#          refresh-interval: 60
+#          type:
+#            - origin
+#      service-b:
+#        - limit: 1
+#          refresh-interval: 2
+#          type:
+#            - origin
+#  strip-prefix: true
 
 
 
