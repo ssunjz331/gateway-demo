@@ -40,6 +40,12 @@ public class PostFilter extends ZuulFilter{
 //        HttpServletResponse servletResponse = context.getResponse();
 //        servletResponse.addHeader("Sample", UUID.randomUUID().toString());
 
+//        RequestContext ctx = RequestContext.getCurrentContext();
+//        HttpServletResponse response = ctx.getResponse();
+//        int statusCode = response.getStatus();
+//        System.out.println("statusCode="+statusCode);
+
+
 
 
         RequestContext context = RequestContext.getCurrentContext();

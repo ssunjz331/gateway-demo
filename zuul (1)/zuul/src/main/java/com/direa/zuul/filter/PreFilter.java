@@ -10,6 +10,9 @@ import org.springframework.cloud.netflix.zuul.filters.Route;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import static org.springframework.cloud.netflix.zuul.filters.support.FilterConstants.FORWARD_TO_KEY;
+import static org.springframework.cloud.netflix.zuul.filters.support.FilterConstants.SERVICE_ID_KEY;
+
 public class PreFilter extends ZuulFilter {
     private static Logger logger =  LoggerFactory.getLogger(PreFilter.class);
 
@@ -26,7 +29,13 @@ public class PreFilter extends ZuulFilter {
 
     @Override
     public boolean shouldFilter() {
+
+//        RequestContext ctx = RequestContext.getCurrentContext();
+//        return !ctx.containsKey(FORWARD_TO_KEY) // a filter has already forwarded
+//                && !ctx.containsKey(SERVICE_ID_KEY); // a filter has already determined serviceId
+
         return true;
+
     }
 
     @Override
@@ -81,11 +90,10 @@ public class PreFilter extends ZuulFilter {
 
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
+        System.out.println(String.format("%s request to %s", request.getMethod(), request.getRequestURL().toString()));
+        return null;
 
 
-        logger.info(String.format("%s request to %s", request.getMethod(), request.getRequestURL().toString()));
-
-
-        return "===prefilter test====";
+//        return "===prefilter test====";
     }
 }

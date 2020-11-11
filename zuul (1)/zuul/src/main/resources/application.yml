@@ -17,6 +17,10 @@ zuul:
       serviceId: 222
       stripPrefix: false
       url: http://localhost:8182  #수동등록
+  ribbon:
+    eager-load:
+      enabled: true
+
 #  ratelimit:
 #    enabled: true
 #    repository: JPA
