@@ -1,23 +1,23 @@
-spring:
-  application:
-    name: zuul
-  cloud:
-    config:
-      uri: http://localhost:8888  #config
-      discovery:
-        enabled: true
-      service-id: config-server
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://admin-eureka:12345@localhost:8761/eureka/
-  instance:
-    lease-renewal-interval-in-seconds: 1      #1초마다 heartbeat를 전송하고
-    lease-expiration-duration-in-seconds: 2   # heartbeat 못받고 2초가 지나가면 인스턴스가 제거된다. 더이상 클라이언트로 서비스를 서버가 보내지 않는다
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: *
+#spring:
+#  application:
+#    name: zuul
+#  cloud:
+#    config:
+#      uri: http://localhost:8888  #config
+#      discovery:
+#        enabled: true
+#      service-id: config-server
+#
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://admin-eureka:12345@localhost:8761/eureka/
+#  instance:
+#    lease-renewal-interval-in-seconds: 1      #1초마다 heartbeat를 전송하고
+#    lease-expiration-duration-in-seconds: 2   # heartbeat 못받고 2초가 지나가면 인스턴스가 제거된다. 더이상 클라이언트로 서비스를 서버가 보내지 않는다
+#
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: *
