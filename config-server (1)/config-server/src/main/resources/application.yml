@@ -9,6 +9,4 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/ssunjz331/spring-cloud-zuul-gateway.git
-#      username: ssunjz331@gmail.com
-#      password:
+          uri: https://github.com/ssunjz331/spring-cloud-config-repository

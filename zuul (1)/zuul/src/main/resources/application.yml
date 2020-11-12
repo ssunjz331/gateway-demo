@@ -6,17 +6,17 @@ server:
   port: 8765
 
 zuul:
-  routes:
-    service-a:
-      path: /first/**
-      serviceId: 111
-      stripPrefix: false
-      url: http://localhost:8181  #수동등록
-    service-b:
-      path: /second/**
-      serviceId: 222
-      stripPrefix: false
-      url: http://localhost:8182  #수동등록
+#  routes:
+#    service-a:
+#      path: /first/**
+#      serviceId: 111
+#      stripPrefix: false
+#      url: http://localhost:8181  #수동등록
+#    service-b:
+#      path: /second/**
+#      serviceId: 222
+#      stripPrefix: false
+#      url: http://localhost:8182  #수동등록
   ribbon:
     eager-load:
       enabled: true
@@ -68,6 +68,17 @@ hystrix:
         rollingStats:
           timeInMilliseconds: 10000
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, routes, filters, refresh
+
+logging:
+  level:
+    org:
+      springframework:
+        web: debug
 
 #service-a:
 #  ribbon:

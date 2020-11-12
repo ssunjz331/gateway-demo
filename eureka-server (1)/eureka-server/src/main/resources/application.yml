@@ -12,7 +12,8 @@ eureka:
   client:
     register-with-eureka: false             # 유레카 서비스에 자신 등록x
     fetch-registry: false                   # 레지스트리 정보를 로컬에 캐싱x
-  service-url:  http://localhost:8761/eureka  # Default Value. Just for demo
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka  # Default Value. Just for demo
   instance:
     prefer-ip-address: true                 # Use ip address instead of hostname from OS when reporting myself to eureka server
 

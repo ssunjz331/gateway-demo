@@ -1,8 +1,18 @@
+server:
+  port: 8181
+
 spring:
   application:
     name: service-a
   profiles:
-    active: default
-#  cloud:
-#    config:
-#      uri: http://localhost:8888
+    active: dev
+  cloud:
+    config:
+      uri: http://localhost:8888
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh

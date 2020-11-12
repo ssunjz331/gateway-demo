@@ -1,5 +1,5 @@
 server:
-  port: 8182
+  port: 8183
 
 spring:
   application:
@@ -8,13 +8,15 @@ spring:
 eureka:
   instance:
     prefer-ip-address: true
-    statusPageUrlPath: ${server.servletPath}/info
-    healthCheckUrlPath: ${server.servletPath}/health
+#    statusPageUrlPath: ${server.servletPath}/info
+#    healthCheckUrlPath: ${server.servletPath}/health
   client:
-    service-url:
+    serviceUrl:
       defaultZone: http://localhost:8761/eureka  # default address
     register-with-eureka: true
-    fetchRegistry: true
-      registry-sync-retries: 5
-    healthcheck:
-      enabled: true
+#    fetchRegistry: true
+#      registry-sync-retries: 5
+#    healthcheck:
+#      enabled: true
+
+
