@@ -20,6 +20,8 @@ zuul:
   ribbon:
     eager-load:
       enabled: true
+    ConnectTimeout: 3000
+    ReadTimeout: 60000
 
 #  ratelimit:
 #    enabled: true
@@ -87,3 +89,4 @@ logging:
 #    ReadTimeout: 3000
 #    MaxTotalHttpConnections: 500
 #    MaxConnectionsPerHost: 100
+

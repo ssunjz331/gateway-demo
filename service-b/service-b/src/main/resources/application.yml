@@ -1,22 +1,22 @@
-server:
-  port: 8183
+#server:
+#  port: 8182
 
 spring:
   application:
     name: service-b
 
-eureka:
-  instance:
-    prefer-ip-address: true
-#    statusPageUrlPath: ${server.servletPath}/info
-#    healthCheckUrlPath: ${server.servletPath}/health
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka  # default address
-    register-with-eureka: true
-#    fetchRegistry: true
-#      registry-sync-retries: 5
-#    healthcheck:
-#      enabled: true
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+##    statusPageUrlPath: ${server.servletPath}/info
+##    healthCheckUrlPath: ${server.servletPath}/health
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka  # default address
+#    register-with-eureka: true
+##    fetchRegistry: true
+##      registry-sync-retries: 5
+##    healthcheck:
+##      enabled: true
 
 
