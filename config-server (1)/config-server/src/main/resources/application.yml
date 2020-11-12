@@ -10,3 +10,7 @@ spring:
       server:
         git:
           uri: https://github.com/ssunjz331/spring-cloud-config-repository
+
+#management:
+#  security:
+#    enabled: false
