@@ -65,8 +65,9 @@ public class PostFilter extends ZuulFilter{
             throw new ZuulException(e, INTERNAL_SERVER_ERROR.value(), e.getMessage());
         }
 
+        System.out.println("post");
+
         return null;
 
-//        return "====postfilter test====";
     }
 }

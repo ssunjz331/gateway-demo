@@ -10,12 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RefreshScope
-//@RequestMapping("/first")
 public class AServiceController {
 
 
-    @GetMapping(path="/{serviceA_Id}")
-    public String ServiceA(@PathVariable String serviceA_Id){
+    @GetMapping(path="/{username}")
+    public String greeting(@PathVariable ("username") String username){
 
 //        try {
 //            Thread.sleep(2000);
@@ -24,8 +23,8 @@ public class AServiceController {
 //        }
 //        throw new RuntimeException("I/O Exception");
 
-
-        return " 정상적인 Service A: "+ serviceA_Id;
+        return String.format("Hello %s! \n", username);
+//        return " 정상적인 Service A: "+ serviceA_Id;
     }
 
 //    @Value("${example.phase}")

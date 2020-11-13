@@ -16,13 +16,24 @@ public class RemoteServiceImpl implements RemoteService {
 
     @Override
     @HystrixCommand(fallbackMethod = "getFallback")
-    public String getA(String serviceA_Id) {
-        return this.restTemplate.getForObject("http://service-a/service-a/"+serviceA_Id, String.class);
+    public String getA(String username) {
+
+//                try {
+//            Thread.sleep(2000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        throw new RuntimeException("I/O Exception");
+
+        return this.restTemplate.getForObject("http://localhost:8181/service-a/" + username, String.class);
+
+
+//        return this.restTemplate.getForObject("http://service-a/service-a/"+serviceA_Id, String.class);
     }
 
 
 
-    public String getFallback(){
+    public String getFallback(String username){
         return "fallback@!";
     }
 }

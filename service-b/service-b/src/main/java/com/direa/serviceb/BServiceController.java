@@ -1,9 +1,6 @@
 package com.direa.serviceb;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.cloud.netflix.hystrix.EnableHystrix;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RefreshScope
@@ -11,19 +8,37 @@ import org.springframework.web.bind.annotation.*;
 //@RequestMapping("/second")
 public class BServiceController {
 
-    @Autowired
-    private RemoteService remoteService;
 
-    @GetMapping(path="/{serviceB_Id}")
-    public String ServiceB(@PathVariable String serviceB_Id){
-        String Adetail = getA();
-//        return "Service B: "+serviceB_Id;
-        return remoteService.getA(serviceB_Id);
+    private final RemoteService remoteService;
+
+    public BServiceController(RemoteService remoteService) {
+        this.remoteService = remoteService;
     }
 
-    private String getA(){
-        return new RemoteServiceImpl().getA("111");
+//    @GetMapping(path="/{serviceB_Id}")
+//    public String ServiceB(@PathVariable String serviceB_Id){
+//        String Adetail = getA();
+////        return "Service B: "+serviceB_Id;
+//        return remoteService.getA(serviceB_Id);
+//    }
+
+//    private String getA(){
+//        return new RemoteServiceImpl().getA("111");
+//    }
+
+
+//    @GetMapping("/get-A/{username}")
+//    public String getA(Model model, @PathVariable("username") String username){
+//        model.addAttribute("greeting", remoteService.getA(username));
+//        return "greeting-view";
+//    }
+
+    @GetMapping(path="/getAservice/{username}")
+    public String getGreeting(@PathVariable String username){
+
+        return remoteService.getA(username);
     }
+
 
 //    @RequestMapping("/table")
 //    @ResponseStatus(HttpStatus.OK)

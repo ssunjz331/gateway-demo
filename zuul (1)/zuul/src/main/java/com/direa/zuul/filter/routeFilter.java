@@ -85,6 +85,7 @@ public class RouteFilter extends ZuulFilter {
         HttpServletRequest request = ctx.getRequest();
         System.out.println(String.format("%s request to %s", request.getMethod(), request.getRequestURL().toString()));
 
+        System.out.println("route");
 
 
         return null;
