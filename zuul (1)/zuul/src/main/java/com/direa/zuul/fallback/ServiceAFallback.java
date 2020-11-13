@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ServiceAFallback implements FallbackProvider {
 
-    private static final String DEFAULT_MESSAGE = "Weather information is not available.";
+    private static final String DEFAULT_MESSAGE = "Service-A(Greeting) is not available.";
 
     @Override
     public String getRoute() {

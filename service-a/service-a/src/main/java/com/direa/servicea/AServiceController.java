@@ -24,24 +24,8 @@ public class AServiceController {
 //        throw new RuntimeException("I/O Exception");
 
         return String.format("Hello %s! \n", username);
-//        return " 정상적인 Service A: "+ serviceA_Id;
     }
 
-//    @Value("${example.phase}")
-//    private String config;
-//
-//    @GetMapping
-//    public String test() {
-//        return config;}
-
-
-
-//    @GetMapping("/AInfo")
-//    public String getAInfo(){
-////        throw new RuntimeException();
-//        return "정상적인 A 서비스";
-//
-//    }
 
 
 }

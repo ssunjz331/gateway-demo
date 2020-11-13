@@ -27,11 +27,7 @@ public class RemoteServiceImpl implements RemoteService {
 
         return this.restTemplate.getForObject("http://localhost:8181/service-a/" + username, String.class);
 
-
-//        return this.restTemplate.getForObject("http://service-a/service-a/"+serviceA_Id, String.class);
     }
-
-
 
     public String getFallback(String username){
         return "fallback@!";

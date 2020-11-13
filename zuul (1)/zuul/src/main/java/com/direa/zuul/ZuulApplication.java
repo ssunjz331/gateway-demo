@@ -40,25 +40,27 @@ public class ZuulApplication {
 		SpringApplication.run(ZuulApplication.class, args);
 	}
 
-	@Bean
-	public RateLimiterErrorHandler rateLimitErrorHandler() {
-		return new DefaultRateLimiterErrorHandler() {
-			@Override
-			public void handleSaveError(String key, Exception e) {
-				// implementation
-			}
 
-			@Override
-			public void handleFetchError(String key, Exception e) {
-				// implementation
-			}
-
-			@Override
-			public void handleError(String msg, Exception e) {
-				// implementation
-			}
-		};
-	}
+	//when 3rd party application fails,
+//	@Bean
+//	public RateLimiterErrorHandler rateLimitErrorHandler() {
+//		return new DefaultRateLimiterErrorHandler() {
+//			@Override
+//			public void handleSaveError(String key, Exception e) {
+//				// implementation
+//			}
+//
+//			@Override
+//			public void handleFetchError(String key, Exception e) {
+//				// implementation
+//			}
+//
+//			@Override
+//			public void handleError(String msg, Exception e) {
+//				// implementation
+//			}
+//		};
+//	}
 
 }
 
