@@ -16,11 +16,7 @@ public class AServiceController {
     @GetMapping(path="/{username}")
     public String greeting(@PathVariable ("username") String username){
 
-//        try {
-//            Thread.sleep(2000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
+
 //        throw new RuntimeException("I/O Exception");
 
         return String.format("Hello %s! \n", username);

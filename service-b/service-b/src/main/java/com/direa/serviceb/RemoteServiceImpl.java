@@ -17,13 +17,7 @@ public class RemoteServiceImpl implements RemoteService {
     @Override
     @HystrixCommand(fallbackMethod = "getFallback")
     public String getA(String username) {
-
-//                try {
-//            Thread.sleep(2000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        throw new RuntimeException("I/O Exception");
+        System.out.println("B");
 
         return this.restTemplate.getForObject("http://localhost:8181/service-a/" + username, String.class);
 

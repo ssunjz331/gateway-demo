@@ -13,10 +13,16 @@ public class BServiceController {
     }
 
 
-    @GetMapping(path="/getAservice/{username}")
+    @GetMapping("/getGreeting/{username}")
     public String getGreeting(@PathVariable String username){
 
         return remoteService.getA(username);
+    }
+
+    @GetMapping(path = "/test/{testNum}")
+    public String greeting(@PathVariable ("testNum") String testNum){
+
+        return String.format("B Test %s! \n", testNum);
     }
 
 }
