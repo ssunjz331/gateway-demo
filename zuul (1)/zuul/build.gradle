@@ -23,6 +23,9 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-actuator')
 	compile( 'org.springframework.cloud:spring-cloud-starter-netflix-ribbon')
 	compile group: 'com.marcosbarbero.cloud', name: 'spring-cloud-zuul-ratelimit', version: '1.5.0.RELEASE'
+	compile group: 'com.github.vladimir-bukhtoyarov', name: 'bucket4j-core', version: '4.10.0'
+	compile group: 'com.github.vladimir-bukhtoyarov', name: 'bucket4j-jcache', version: '4.9.0'
+	compile group: 'javax.cache', name: 'cache-api', version: '1.0.0'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}

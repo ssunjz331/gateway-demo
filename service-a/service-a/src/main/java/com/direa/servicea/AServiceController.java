@@ -13,18 +13,29 @@ import org.springframework.web.bind.annotation.RestController;
 //@RequestMapping("/first")
 public class AServiceController {
 
-//    @Value("$who.am.i")
-//    private String identity;
-//
-//    @GetMapping("/test")
-//    public String test(){
-//        return identity;
-//    }
 
     @GetMapping(path="/{serviceA_Id}")
     public String ServiceA(@PathVariable String serviceA_Id){
+
+//        try {
+//            Thread.sleep(2000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        throw new RuntimeException("I/O Exception");
+
+
         return " 정상적인 Service A: "+ serviceA_Id;
     }
+
+//    @Value("${example.phase}")
+//    private String config;
+//
+//    @GetMapping
+//    public String test() {
+//        return config;}
+
+
 
 //    @GetMapping("/AInfo")
 //    public String getAInfo(){

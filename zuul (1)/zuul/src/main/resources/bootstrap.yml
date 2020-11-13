@@ -18,8 +18,8 @@ spring:
 #    lease-renewal-interval-in-seconds: 1      #1초마다 heartbeat를 전송하고
 #    lease-expiration-duration-in-seconds: 2   # heartbeat 못받고 2초가 지나가면 인스턴스가 제거된다. 더이상 클라이언트로 서비스를 서버가 보내지 않는다
 #
-#management:
-#  endpoints:
-#    web:
-#      exposure:
-#        include: *
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
