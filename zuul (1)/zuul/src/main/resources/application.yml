@@ -6,48 +6,30 @@ server:
   port: 8765
 
 zuul:
-#  routes:
-#    service-a:
-#      path: /first/**
-#      serviceId: 111
-#      stripPrefix: false
-#      url: http://localhost:8181  #수동등록
-#    service-b:
-#      path: /second/**
-#      serviceId: 222
-#      stripPrefix: false
-#      url: http://localhost:8182  #수동등록
+  #  routes:
+  #    service-a:
+  #      path: /first/**
+  #      url: http://localhost:8181  #수동등록
   ribbon:
     eager-load:
       enabled: true
     ConnectTimeout: 3000
     ReadTimeout: 60000
+  ribbonIsolationStrategy: THREAD
+  treadpool:
+    useSeparateThreadPools: true
 
-#  ratelimit:
-#    enabled: true
-#    repository: JPA
-#    policy-list:
-#      service-a:
-#        - limit: 5
-#          refresh-interval: 60
-#          type:
-#            - origin
-#      service-b:
-#        - limit: 1
-#          refresh-interval: 2
-#          type:
-#            - origin
-#  strip-prefix: true
 
 
 
 eureka:
   instance:
     non-secure-port: ${server.port}
-    prefer-ip-address: true
+    preferIpAddress: true
   client:
+    healthcheck: true
     register-with-eureka: true
-    fetchRegistry: true
+    fetch-registry: true
     registry-sync-retries: 5
     service-url:
       defaultZone: http://localhost:8761/eureka/
@@ -69,12 +51,14 @@ hystrix:
       metrics:
         rollingStats:
           timeInMilliseconds: 10000
+  dashboard:
+    proxy-stream-allow-list: '*'
 
 management:
   endpoints:
     web:
       exposure:
-        include: info, routes, filters, refresh
+        include: '*'
 
 logging:
   level:
@@ -82,11 +66,29 @@ logging:
       springframework:
         web: debug
 
-#service-a:
-#  ribbon:
-#    NIWSServerListClassName: com.netflix.loadbalancer.ConfigurationBasedServerList
-#    ConnectTimeout: 1000
-#    ReadTimeout: 3000
-#    MaxTotalHttpConnections: 500
-#    MaxConnectionsPerHost: 100
+ratelimit:
+  enabled: true
+  repository: BUCKET4J_JCACHE
+  policy-list:
+    service-a:
+      - limit: 10
+        refresh-interval: 60
+        type:
+          - origin
+    service-b:
+      - limit: 10
+        refresh-interval: 2
+        type:
+          - origin
+  strip-prefix: true
 
+service-a:
+  ribbon:
+#    lisfOfServers: localhost:8181, localhost:8183
+    eureka:
+      enable: true
+    NIWSServerListClassName: com.netflix.niws.loadbalancer.DiscoveryEnabledNIWSServerList
+#      connect-timeout: 5000
+#      ReadTimeout: 5000
+#      MaxTotalHttpConnections: 500
+#      MaxConnectionsPerHost: 100
