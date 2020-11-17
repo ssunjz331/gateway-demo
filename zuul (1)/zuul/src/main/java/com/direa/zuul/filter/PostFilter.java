@@ -4,8 +4,10 @@ import com.google.common.io.CharStreams;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
+import io.github.bucket4j.ConsumptionProbe;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.InputStream;
@@ -65,7 +67,15 @@ public class PostFilter extends ZuulFilter{
             throw new ZuulException(e, INTERNAL_SERVER_ERROR.value(), e.getMessage());
         }
 
+
+//        ConsumptionProbe probe
+        
+
+
+
+
         System.out.println("post");
+
 
         return null;
 

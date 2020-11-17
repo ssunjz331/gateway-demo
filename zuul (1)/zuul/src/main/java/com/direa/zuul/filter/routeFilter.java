@@ -3,10 +3,16 @@ package com.direa.zuul.filter;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 import javax.servlet.http.HttpServletRequest;
 
 public class RouteFilter extends ZuulFilter {
+
+    private final Logger logger = LoggerFactory.getLogger(getClass().getName());
+
     @Override
     public String filterType() {
         return "route";
@@ -86,7 +92,7 @@ public class RouteFilter extends ZuulFilter {
         System.out.println(String.format("%s request to %s", request.getMethod(), request.getRequestURL().toString()));
 
         System.out.println("route");
-
+        logger.debug("Route Filter");
 
         return null;
     }

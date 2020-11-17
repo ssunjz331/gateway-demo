@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.InetAddress;
@@ -23,16 +24,27 @@ import java.net.Socket;
 public class AServiceController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Autowired
     private DiscoveryClient discoveryClient;
 
-    @GetMapping(path="hi/{username}")
+    @GetMapping(path="/hi/{username}")
     public String greeting(@PathVariable ("username") String username){
 
 
 //        throw new RuntimeException("I/O Exception");
 
         return String.format("Hello %s! \n", username);
+    }
+
+    @GetMapping("/simple")
+    public ResponseEntity<String> getSimple() {
+        return ResponseEntity.ok("Hi!!!!");
+    }
+
+    @GetMapping("/advanced")
+    public ResponseEntity<String> getAdvanced() {
+        return ResponseEntity.ok("Hello, how you doing?");
     }
 
     //Dynamic Routing Check

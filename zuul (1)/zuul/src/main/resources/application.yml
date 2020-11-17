@@ -6,10 +6,13 @@ server:
   port: 8765
 
 zuul:
-  #  routes:
-  #    service-a:
-  #      path: /first/**
-  #      url: http://localhost:8181  #수동등록
+#  routes:
+#    serviceSimple:
+#      path: /service-a/simple
+#      url: localhost:8765/service-a/simple
+#    serviceAdvanced:
+#      path: /service-a/advanced
+#      url: localhost:8181/service-a/advanced
   ribbon:
     eager-load:
       enabled: true
@@ -70,12 +73,12 @@ ratelimit:
   enabled: true
   repository: BUCKET4J_JCACHE
   policy-list:
-    service-a:
+    serviceSimple:
       - limit: 10
         refresh-interval: 60
         type:
           - origin
-    service-b:
+    serviceAdvanced:
       - limit: 10
         refresh-interval: 2
         type:
