@@ -7,6 +7,9 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RefreshScope
 @Service
 public class RemoteServiceImpl implements RemoteService {
@@ -19,7 +22,7 @@ public class RemoteServiceImpl implements RemoteService {
     public String getA(String username) {
         System.out.println("B");
 
-        return this.restTemplate.getForObject("http://localhost:8765/service-a/"+username, String.class);
+        return this.restTemplate.getForObject("http://localhost:8765/service-a/hi/"+username, String.class);
 
     }
 

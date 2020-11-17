@@ -26,7 +26,7 @@ public class AServiceController {
     @Autowired
     private DiscoveryClient discoveryClient;
 
-    @GetMapping(path="service-a/{username}")
+    @GetMapping(path="hi/{username}")
     public String greeting(@PathVariable ("username") String username){
 
 
