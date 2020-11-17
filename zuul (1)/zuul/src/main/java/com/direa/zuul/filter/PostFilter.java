@@ -1,14 +1,17 @@
 package com.direa.zuul.filter;
 
+
 import com.google.common.io.CharStreams;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
+import io.github.bucket4j.Bucket;
 import io.github.bucket4j.ConsumptionProbe;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -68,8 +71,13 @@ public class PostFilter extends ZuulFilter{
         }
 
 
-//        ConsumptionProbe probe
-        
+
+        HttpServletRequest request = context.getRequest();
+        HttpServletResponse response = context.getResponse();
+
+        String apiKey = request.getHeader("X-api-key");
+
+
 
 
 
