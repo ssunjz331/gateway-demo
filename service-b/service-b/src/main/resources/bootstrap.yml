@@ -1,5 +1,5 @@
 server:
-  port: 108182
+  port: 8182
 
 spring:
   application:
@@ -8,7 +8,7 @@ spring:
     active: dev
   cloud:
     config:
-      uri: http://localhost:108888
+      uri: http://localhost:8888
 
 management:
   endpoints:

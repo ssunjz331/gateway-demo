@@ -1,5 +1,5 @@
 server:
-  port: 108181
+  port: 8181
 
 spring:
   application:
@@ -12,7 +12,7 @@ spring:
 ##    healthCheckUrlPath: ${server.servletPath}/health
 #  client:
 #    service-url:
-#      defaultZone: http://localhost:108761/eureka  # default address
+#      defaultZone: http://localhost:8761/eureka  # default address
 #    register-with-eureka: true
 ##    fetchRegistry: true
 ##    registry-sync-retries: 5
