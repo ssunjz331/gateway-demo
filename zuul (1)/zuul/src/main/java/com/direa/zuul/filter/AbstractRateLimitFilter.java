@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.direa.zuul.ratelimit.RateLimitConstants.*;
+import static com.marcosbarbero.cloud.autoconfigure.zuul.ratelimit.support.RateLimitConstants.*;
 
 
 public class AbstractRateLimitFilter extends ZuulFilter {

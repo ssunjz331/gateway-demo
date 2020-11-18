@@ -105,15 +105,15 @@ public class RateLimitPreFilter extends AbstractRateLimitFilter {
                 }
             }
 
-            if ((limit != null && remaining < 0) || (quota != null && remainingQuota < 0)) {
-                ctx.setResponseStatusCode(HttpStatus.TOO_MANY_REQUESTS.value());
-                ctx.put(RATE_LIMIT_EXCEEDED, "true");
-                ctx.setSendZuulResponse(false);
-
-                eventPublisher.publishEvent(new RateLimitExceededEvent(this, policy, rateLimitUtils.getRemoteAddress(request)));
-
-                throw new RateLimitExceededException();
-            }
+//            if ((limit != null && remaining < 0) || (quota != null && remainingQuota < 0)) {
+//                ctx.setResponseStatusCode(HttpStatus.TOO_MANY_REQUESTS.value());
+//                ctx.put(RATE_LIMIT_EXCEEDED, "true");
+//                ctx.setSendZuulResponse(false);
+//
+//                eventPublisher.publishEvent(new RateLimitExceededEvent(this, policy, rateLimitUtils.getRemoteAddress(request)));
+//
+//                throw new RateLimitExceededException();
+//            }
         }
 
         return null;
