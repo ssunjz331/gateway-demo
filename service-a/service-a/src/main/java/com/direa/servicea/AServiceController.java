@@ -21,6 +21,7 @@ import java.net.Socket;
 
 @RestController
 @RefreshScope
+@RequestMapping("/service-a")
 public class AServiceController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());

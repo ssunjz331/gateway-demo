@@ -4,6 +4,12 @@ server:
 spring:
   application:
     name: zuul
+#  autoconfigure:
+#    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  datasource:
+    username: zuul
+    password: zuuldatasource
+
 
 zuul:
   routes:
@@ -19,26 +25,26 @@ zuul:
     deny-request:
       response-status-code: 404
     policy-list:
-      serviceSimple:
-        - limit: 10
-          refresh-interval: 60
+      service-a:
+        - limit: 2
+          refresh-interval: 2
           type:
             - origin
-      serviceAdvanced:
-        - limit: 10
+      service-b:
+        - limit: 3
           refresh-interval: 2
           type:
             - origin
     strip-prefix: true
 
-  ribbon:
-    eager-load:
-      enabled: true
-    ConnectTimeout: 3000
-    ReadTimeout: 60000
-  ribbonIsolationStrategy: THREAD
-  treadpool:
-    useSeparateThreadPools: true
+#  ribbon:
+#    eager-load:
+#      enabled: true
+#    ConnectTimeout: 3000
+#    ReadTimeout: 60000
+#  ribbonIsolationStrategy: THREAD
+#  treadpool:
+#    useSeparateThreadPools: true
 
 
 
@@ -63,15 +69,15 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 5000
-      circuitBreaker:
-        enabled: true
-        requestVolumeThreshold: 3
-        sleepWindowMilliseconds: 5000
-        errorThresholdPercentage: 50
-      metrics:
-        rollingStats:
-          timeInMilliseconds: 10000
+            timeoutInMilliseconds: 1000
+#      circuitBreaker:
+#        enabled: true
+#        requestVolumeThreshold: 3
+#        sleepWindowMilliseconds: 5000
+#        errorThresholdPercentage: 50
+#      metrics:
+#        rollingStats:
+#          timeInMilliseconds: 10000
     service-a:
       execution:
         isolation:
@@ -85,17 +91,17 @@ hystrix:
   dashboard:
     proxy-stream-allow-list: '*'
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
 
-logging:
-  level:
-    org:
-      springframework:
-        web: debug
+#logging:
+#  level:
+#    org:
+#      springframework:
+#        web: debug
 
 
 
@@ -105,16 +111,16 @@ service-a:
     eureka:
       enable: true
     NIWSServerListClassName: com.netflix.niws.loadbalancer.DiscoveryEnabledNIWSServerList
-    ConnectTimeout: 5000
-    ReadTimeout: 5000
+    ConnectTimeout: 1000
+    ReadTimeout: 3000
     MaxTotalHttpConnections: 500
     MaxConnectionsPerHost: 100
     MaxAutoRetriesNextServer: 1
 
 service-b:
   ribbon:
-    ConnectTimeout: 5000
-    ReadTimeout: 5000
+    ConnectTimeout: 1000
+    ReadTimeout: 3000
     MaxTotalHttpConnections: 500
     MaxConnectionsPerHost: 100
     MaxAutoRetriesNextServer: 1

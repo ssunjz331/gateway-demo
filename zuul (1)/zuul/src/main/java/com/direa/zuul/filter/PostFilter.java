@@ -55,9 +55,7 @@ public class PostFilter extends ZuulFilter {
 
     private Logger logger = LoggerFactory.getLogger(PostFilter.class);
     private RestTemplate restTemplate = new RestTemplate();
-
-    @Autowired
-    private PlanService planService;
+    
 
     @Override
     public String filterType() {
@@ -108,36 +106,36 @@ public class PostFilter extends ZuulFilter {
         HttpServletResponse response = context.getResponse();
 
         ////여기
-        RateLimitProperties.Policy policy = new RateLimitProperties.Policy();
-        final Long limit = policy.getLimit();
-        Rate rate = new Rate();
-        final Long remaining = rate.getRemaining();
-
-
-        String apiKey = request.getHeader("X-api-key");
-        String kk = response.getHeader("X-RateLimit-Limit");
-        logger.info("logger>> api-key는 "+apiKey);
-        logger.info("logger>> kk는 "+kk);
-
-        Bucket tokenBucket = planService.resolveBucket(apiKey);
-        ConsumptionProbe probe = tokenBucket.tryConsumeAndReturnRemaining(1);
-        response.addHeader("X-Rate-Limit-Remaining", String.valueOf(probe.getRemainingTokens()));
-
-        if (apiKey == null || apiKey.isEmpty()) {
-            try {
-                response.sendError(HttpStatus.BAD_REQUEST.value(), "Missing Header: X-api-key");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return false;
-        }
-
-        if (probe.isConsumed()) {
-            logger.info(String.valueOf(ResponseEntity.ok()
-                    .header("X-Rate-Limit-Remaining", Long.toString(probe.getRemainingTokens()))));
-        }
-
-        ResponseEntity<String> rp = restTemplate.getForEntity("http://localhost:8765/service-a/advanced", String.class);
+//        RateLimitProperties.Policy policy = new RateLimitProperties.Policy();
+//        final Long limit = policy.getLimit();
+//        Rate rate = new Rate();
+//        final Long remaining = rate.getRemaining();
+//
+//
+//        String apiKey = request.getHeader("X-api-key");
+//        String kk = response.getHeader("X-RateLimit-Limit");
+//        logger.info("logger>> api-key는 "+apiKey);
+//        logger.info("logger>> kk는 "+kk);
+//
+//        Bucket tokenBucket = planService.resolveBucket(apiKey);
+//        ConsumptionProbe probe = tokenBucket.tryConsumeAndReturnRemaining(1);
+//        response.addHeader("X-Rate-Limit-Remaining", String.valueOf(probe.getRemainingTokens()));
+//
+//        if (apiKey == null || apiKey.isEmpty()) {
+//            try {
+//                response.sendError(HttpStatus.BAD_REQUEST.value(), "Missing Header: X-api-key");
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//            return false;
+//        }
+//
+//        if (probe.isConsumed()) {
+//            logger.info(String.valueOf(ResponseEntity.ok()
+//                    .header("X-Rate-Limit-Remaining", Long.toString(probe.getRemainingTokens()))));
+//        }
+//
+//        ResponseEntity<String> rp = restTemplate.getForEntity("http://localhost:8765/service-a/advanced", String.class);
 //        String kk2 = rp.getHeaders(X-RateLimit-Limit);
 
 
@@ -193,38 +191,38 @@ public class PostFilter extends ZuulFilter {
     }
 }
 
-enum PricingPlan {
-
-    FREE(20),
-
-    BASIC(40),
-
-    PROFESSIONAL(100);
-
-    private int bucketCapacity;
-
-    private PricingPlan(int bucketCapacity) {
-        this.bucketCapacity = bucketCapacity;
-    }
-
-    Bandwidth getLimit() {
-        return Bandwidth.classic(bucketCapacity, Refill.intervally(bucketCapacity, Duration.ofHours(1)));
-    }
-
-    public int bucketCapacity() {
-        return bucketCapacity;
-    }
-
-    static PricingPlan resolvePlanFromApiKey(String apiKey) {
-        if (apiKey == null || apiKey.isEmpty()) {
-            return FREE;
-
-        } else if (apiKey.startsWith("PX001-")) {
-            return PROFESSIONAL;
-
-        } else if (apiKey.startsWith("BX001-")) {
-            return BASIC;
-        }
-        return FREE;
-    }
-}
+//enum PricingPlan {
+//
+//    FREE(20),
+//
+//    BASIC(40),
+//
+//    PROFESSIONAL(100);
+//
+//    private int bucketCapacity;
+//
+//    private PricingPlan(int bucketCapacity) {
+//        this.bucketCapacity = bucketCapacity;
+//    }
+//
+//    Bandwidth getLimit() {
+//        return Bandwidth.classic(bucketCapacity, Refill.intervally(bucketCapacity, Duration.ofHours(1)));
+//    }
+//
+//    public int bucketCapacity() {
+//        return bucketCapacity;
+//    }
+//
+//    static PricingPlan resolvePlanFromApiKey(String apiKey) {
+//        if (apiKey == null || apiKey.isEmpty()) {
+//            return FREE;
+//
+//        } else if (apiKey.startsWith("PX001-")) {
+//            return PROFESSIONAL;
+//
+//        } else if (apiKey.startsWith("BX001-")) {
+//            return BASIC;
+//        }
+//        return FREE;
+//    }
+//}
