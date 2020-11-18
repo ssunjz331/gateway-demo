@@ -3,12 +3,10 @@ spring:
     name: zuul
   profiles:
     active: dev
-#  cloud:
-#    config:
-#      uri: http://localhost:8888  #config
-#      discovery:
-#        enabled: true
-#      service-id: config-server
+  cloud:
+    config:
+      uri: http://localhost:8888
+      label: main
 #
 #eureka:
 #  client:

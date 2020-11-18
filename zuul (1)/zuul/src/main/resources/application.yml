@@ -1,18 +1,36 @@
+server:
+  port: 8765
+
 spring:
   application:
     name: zuul
 
-server:
-  port: 8765
-
 zuul:
-#  routes:
-#    serviceSimple:
-#      path: /service-a/simple
-#      url: localhost:8765/service-a/simple
-#    serviceAdvanced:
-#      path: /service-a/advanced
-#      url: localhost:8181/service-a/advanced
+  routes:
+    service-a:
+      path: /service-a/**
+      serviceId: service-a
+      stripPrefix: false
+  ratelimit:
+    enabled: true
+    repository: BUCKET4J_JCACHE
+    behind-proxy: true
+    add-response-headers: true
+    deny-request:
+      response-status-code: 404
+    policy-list:
+      serviceSimple:
+        - limit: 10
+          refresh-interval: 60
+          type:
+            - origin
+      serviceAdvanced:
+        - limit: 10
+          refresh-interval: 2
+          type:
+            - origin
+    strip-prefix: true
+
   ribbon:
     eager-load:
       enabled: true
@@ -54,6 +72,16 @@ hystrix:
       metrics:
         rollingStats:
           timeInMilliseconds: 10000
+    service-a:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+    service-b:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
   dashboard:
     proxy-stream-allow-list: '*'
 
@@ -69,29 +97,24 @@ logging:
       springframework:
         web: debug
 
-ratelimit:
-  enabled: true
-  repository: BUCKET4J_JCACHE
-  policy-list:
-    serviceSimple:
-      - limit: 10
-        refresh-interval: 60
-        type:
-          - origin
-    serviceAdvanced:
-      - limit: 10
-        refresh-interval: 2
-        type:
-          - origin
-  strip-prefix: true
+
 
 service-a:
   ribbon:
-#    lisfOfServers: localhost:8181, localhost:8183
+    #    lisfOfServers: localhost:8181, localhost:8183
     eureka:
       enable: true
     NIWSServerListClassName: com.netflix.niws.loadbalancer.DiscoveryEnabledNIWSServerList
-#      connect-timeout: 5000
-#      ReadTimeout: 5000
-#      MaxTotalHttpConnections: 500
-#      MaxConnectionsPerHost: 100
+    ConnectTimeout: 5000
+    ReadTimeout: 5000
+    MaxTotalHttpConnections: 500
+    MaxConnectionsPerHost: 100
+    MaxAutoRetriesNextServer: 1
+
+service-b:
+  ribbon:
+    ConnectTimeout: 5000
+    ReadTimeout: 5000
+    MaxTotalHttpConnections: 500
+    MaxConnectionsPerHost: 100
+    MaxAutoRetriesNextServer: 1

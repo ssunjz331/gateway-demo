@@ -10,8 +10,8 @@ eureka:
     response-cache-update-interval-ms: 1000 # Eureka Server's Response Cache. Default 30,000ms
     enableSelfPreservation: false           # Just for demo
   client:
-    register-with-eureka: false             # 유레카 서비스에 자신 등록x
-    fetch-registry: false                   # 레지스트리 정보를 로컬에 캐싱x
+    registerWithEureka: false             # 유레카 서비스에 자신 등록x
+    fetchRegistry: false                   # 레지스트리 정보를 로컬에 캐싱x
     serviceUrl:
       defaultZone: http://localhost:8761/eureka  # Default Value. Just for demo
   instance:
