@@ -14,7 +14,6 @@ import java.net.Socket;
 
 @RestController
 @RefreshScope
-@RequestMapping("/service-a")
 public class AServiceController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -24,10 +23,6 @@ public class AServiceController {
 
     @GetMapping(path="/hi/{username}")
     public String greeting(@PathVariable ("username") String username){
-
-
-//        throw new RuntimeException("I/O Exception");
-
         return String.format("Hello %s! \n", username);
     }
 
