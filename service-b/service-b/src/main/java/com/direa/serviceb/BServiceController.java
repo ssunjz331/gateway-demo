@@ -6,19 +6,6 @@ import org.springframework.web.bind.annotation.*;
 @RefreshScope
 @RestController
 public class BServiceController {
-    private final RemoteService remoteService;
-//    RemoteService rmtService = new RemoteServiceImpl();
-    public BServiceController(RemoteService remoteService) {
-        this.remoteService = remoteService;
-    }
-
-
-    @GetMapping("/getGreeting/{username}")
-    public String getGreeting(@PathVariable String username){
-        System.out.println("pass through B controller");
-        return remoteService.getA(username);
-//        return rmtService.getA(username);
-    }
 
 
     @GetMapping(path = "/test/{testNum}")
@@ -27,4 +14,10 @@ public class BServiceController {
         return String.format("B Test %s! \n", testNum);
     }
 
+    @GetMapping("/welcome/{username}")
+    public String welcome(@PathVariable String username) {
+        //Fallback Check
+//        throw new RuntimeException("I/O Exception");
+        return "Welcome To Hello World!"+username;
+    }
 }
