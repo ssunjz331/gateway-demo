@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 class GatewayServiceFallback implements FallbackProvider {
 
-    private static final String DEFAULT_MESSAGE = "Service not available."; //필터링 에러
+    private static final String DEFAULT_MESSAGE = "Service not available."; //라우팅 실패 에러
 
     @Override
     public String getRoute() {

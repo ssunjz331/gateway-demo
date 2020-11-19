@@ -12,11 +12,11 @@ spring:
 
 
 zuul:
-  routes:
-    service-a:
-      path: /service-a/**
-      serviceId: service-a
-      stripPrefix: false
+#  routes:
+#    service-a:
+#      path: /service-a/**
+#      serviceId: service-a
+#      stripPrefix: false
   ratelimit:
     enabled: true
     repository: BUCKET4J_JCACHE
@@ -26,17 +26,14 @@ zuul:
       response-status-code: 404
     policy-list:
       service-a:
-        - limit: 2
-          refresh-interval: 2
-          type:
-            - origin
-      service-b:
         - limit: 3
-          refresh-interval: 2
+          refresh-interval: 10
           type:
             - origin
     strip-prefix: true
-
+  ribbonIsolationStrategy: THREAD
+  tread-pool:
+    useSeparateThreadPools: true
 #  ribbon:
 #    eager-load:
 #      enabled: true
@@ -83,11 +80,11 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 10000
-    service-b:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 10000
+#    service-b:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 10000
   dashboard:
     proxy-stream-allow-list: '*'
 
@@ -107,20 +104,10 @@ hystrix:
 
 service-a:
   ribbon:
-    #    lisfOfServers: localhost:8181, localhost:8183
-    eureka:
-      enable: true
-    NIWSServerListClassName: com.netflix.niws.loadbalancer.DiscoveryEnabledNIWSServerList
     ConnectTimeout: 1000
     ReadTimeout: 3000
     MaxTotalHttpConnections: 500
     MaxConnectionsPerHost: 100
     MaxAutoRetriesNextServer: 1
 
-service-b:
-  ribbon:
-    ConnectTimeout: 1000
-    ReadTimeout: 3000
-    MaxTotalHttpConnections: 500
-    MaxConnectionsPerHost: 100
-    MaxAutoRetriesNextServer: 1
+

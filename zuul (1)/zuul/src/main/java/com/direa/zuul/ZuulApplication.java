@@ -3,6 +3,11 @@ package com.direa.zuul;
 import com.direa.zuul.filter.*;
 
 
+import com.marcosbarbero.cloud.autoconfigure.zuul.ratelimit.config.RateLimitKeyGenerator;
+import com.marcosbarbero.cloud.autoconfigure.zuul.ratelimit.config.RateLimitUtils;
+import com.marcosbarbero.cloud.autoconfigure.zuul.ratelimit.config.RateLimiter;
+import com.marcosbarbero.cloud.autoconfigure.zuul.ratelimit.config.properties.RateLimitProperties;
+import com.marcosbarbero.cloud.autoconfigure.zuul.ratelimit.config.repository.DefaultRateLimiterErrorHandler;
 import com.netflix.zuul.ZuulFilter;
 import io.github.bucket4j.grid.GridBucketState;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,14 +18,17 @@ import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.cloud.netflix.zuul.filters.RouteLocator;
 import org.springframework.cloud.netflix.zuul.filters.ZuulProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.util.UrlPathHelper;
 
 import javax.cache.Cache;
 import javax.cache.CacheManager;
 import javax.cache.Caching;
 import javax.cache.configuration.MutableConfiguration;
 import javax.cache.spi.CachingProvider;
+
 
 
 @SpringBootApplication
@@ -44,10 +52,17 @@ public class ZuulApplication {
 		return new RouteFilter();
 	}
 
+
 	@Bean
-	public PostFilter postFilter(){
+	public PostFilter postFilter() {
 		return new PostFilter();
 	}
+
+	@Bean
+	public ErrorFilter errorFilter() {
+		return new ErrorFilter();
+	}
+
 
 	@Bean
 	@Qualifier("RateLimit")
@@ -69,28 +84,6 @@ public class ZuulApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ZuulApplication.class, args);
 	}
-
-
-	//when 3rd party application fails,
-//	@Bean
-//	public RateLimiterErrorHandler rateLimitErrorHandler() {
-//		return new DefaultRateLimiterErrorHandler() {
-//			@Override
-//			public void handleSaveError(String key, Exception e) {
-//				// implementation
-//			}
-//
-//			@Override
-//			public void handleFetchError(String key, Exception e) {
-//				// implementation
-//			}
-//
-//			@Override
-//			public void handleError(String msg, Exception e) {
-//				// implementation
-//			}
-//		};
-//	}
 
 }
 
