@@ -44,28 +44,28 @@ public class ErrorFilter extends SendErrorFilter {
         HttpServletRequest request = ctx.getRequest();
         HttpServletResponse response = ctx.getResponse();
 
-        HttpHeaders headers = (HttpHeaders) response.getHeaderNames();
-        logger.error("Logger>>>>> RateLimit: "+headers.getFirst(HEADER_LIMIT));
-        logger.error("Logger>>>>> RateLimitRemaining: "+headers.getFirst(HEADER_REMAINING));
+
+        logger.info("Logger>>>>> RateLimit: "+response.getHeader(HEADER_LIMIT));
+        logger.info("Logger>>>>> RateLimitRemaining: "+response.getHeader(HEADER_REMAINING));
 
         return null;
     }
 
 
-    public ClientHttpResponse fallbackResponse(String route, Throwable cause) {
-        if (cause instanceof RateLimitExceededException) {
-
-            RequestContext ctx = RequestContext.getCurrentContext();
-            HttpServletRequest request = ctx.getRequest();
-            HttpServletResponse response = ctx.getResponse();
-
-            HttpHeaders headers = (HttpHeaders) response.getHeaderNames();
-            logger.error("Logger>>>>> RateLimit: "+headers.getFirst(HEADER_LIMIT));
-            logger.error("Logger>>>>> RateLimitRemaining: "+headers.getFirst(HEADER_REMAINING));
-
-            return new GatewayClientResponse(HttpStatus.TOO_MANY_REQUESTS, DEFAULT_MESSAGE);
-        } else {
-            return new GatewayClientResponse(HttpStatus.BAD_REQUEST, DEFAULT_MESSAGE);
-        }
-    }
+//    public ClientHttpResponse fallbackResponse(String route, Throwable cause) {
+//        if (cause instanceof RateLimitExceededException) {
+//
+//            RequestContext ctx = RequestContext.getCurrentContext();
+//            HttpServletRequest request = ctx.getRequest();
+//            HttpServletResponse response = ctx.getResponse();
+//
+//            HttpHeaders headers = (HttpHeaders) response.getHeaderNames();
+//            logger.error("Logger>>>>> RateLimit: "+headers.getFirst(HEADER_LIMIT));
+//            logger.error("Logger>>>>> RateLimitRemaining: "+headers.getFirst(HEADER_REMAINING));
+//
+//            return new GatewayClientResponse(HttpStatus.TOO_MANY_REQUESTS, DEFAULT_MESSAGE);
+//        } else {
+//            return new GatewayClientResponse(HttpStatus.BAD_REQUEST, DEFAULT_MESSAGE);
+//        }
+//    }
 }
