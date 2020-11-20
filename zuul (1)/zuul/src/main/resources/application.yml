@@ -4,11 +4,6 @@ server:
 spring:
   application:
     name: zuul
-#  routes:
-#    service-a:
-#      path: /service-a/**
-#      serviceId: service-a
-#      stripPrefix: false
 #  autoconfigure:
 #    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 #  datasource:
@@ -17,32 +12,39 @@ spring:
 
 
 zuul:
-  ignored-services: '*'
+  strip-prefix: true
+  #   ignored-services: '*'
   routes:
     service-a:
       path: /service-a/**
       serviceId: service-a
-      stripPrefix: false
-#  SendErrorFilter:
-#    error:
-#    disabled: true
-  ratelimit:
-    enabled: true
-    repository: BUCKET4J_JCACHE
-    behind-proxy: true
-    add-response-headers: true
-    deny-request:
-      response-status-code: 404
-    policy-list:
-      service-a:
-        - limit: 10
-          refresh-interval: 60
-          type:
-            - origin
-#    strip-prefix: true
-  ribbonIsolationStrategy: THREAD
-  tread-pool:
-    useSeparateThreadPools: true
+      stripPrefix: true
+    service-b:
+      path: /service-b/**
+      serviceId: service-b
+      stripPrefix: true
+
+  SendErrorFilter:
+    error:
+    disable: true
+
+    ratelimit:
+      enabled: true
+      repository: BUCKET4J_JCACHE
+      behind-proxy: true
+      add-response-headers: true
+      deny-request:
+        response-status-code: 404
+      policy-list:
+        service-a:
+          - limit: 10
+            refresh-interval: 60
+            type:
+              - origin
+
+    ribbonIsolationStrategy: THREAD
+    tread-pool:
+      useSeparateThreadPools: true
 #  ribbon:
 #    eager-load:
 #      enabled: true
@@ -76,14 +78,14 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 10000
-#      circuitBreaker:
-#        enabled: true
-#        requestVolumeThreshold: 3
-#        sleepWindowMilliseconds: 5000
-#        errorThresholdPercentage: 50
-#      metrics:
-#        rollingStats:
-#          timeInMilliseconds: 10000
+    #      circuitBreaker:
+    #        enabled: true
+    #        requestVolumeThreshold: 3
+    #        sleepWindowMilliseconds: 5000
+    #        errorThresholdPercentage: 50
+    #      metrics:
+    #        rollingStats:
+    #          timeInMilliseconds: 10000
     service-a:
       execution:
         isolation:
@@ -105,7 +107,7 @@ hystrix:
 
 logging:
   level:
-#    org.springframework.web: debug
+    #    org.springframework.web: debug
     com.netflix.loadbalancer.LoadBalancerContext: debug
 
 
@@ -120,5 +122,3 @@ service-a:
     MaxTotalHttpConnections: 300
     MaxConnectionsPerHost: 100
     MaxAutoRetriesNextServer: 1
-
-

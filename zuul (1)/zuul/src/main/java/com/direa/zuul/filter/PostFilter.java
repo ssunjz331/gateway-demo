@@ -16,6 +16,7 @@ import org.springframework.cloud.netflix.zuul.filters.RouteLocator;
 
 import org.springframework.cloud.netflix.zuul.util.ZuulRuntimeException;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UrlPathHelper;
 
@@ -48,7 +49,7 @@ public class PostFilter extends ZuulFilter {
 
     @Override
     public int filterOrder() {
-        return 0;
+        return 100;
     }
 
     @Override
@@ -79,6 +80,10 @@ public class PostFilter extends ZuulFilter {
             context.setResponseBody(responseData);
 
             //
+//            int id = 1;
+//            response.addHeader("X-Response-ID",String.valueOf(id++));
+//            logger.info("AddResponseIDHeader id : "+id);
+
 
         } catch (Exception e) {
             try {
