@@ -54,13 +54,13 @@ public class PostFilter extends ZuulFilter {
     @Override
     public boolean shouldFilter() {
 
-        return !RequestContext.getCurrentContext().containsKey(RATE_LIMIT_EXCEEDED);
-
+//        return !RequestContext.getCurrentContext().containsKey(RATE_LIMIT_EXCEEDED);
+        return true;
     }
 
     @Override
     public Object run() throws ZuulException {
-
+//    public Object run() {
         RequestContext context = RequestContext.getCurrentContext();
         HttpServletRequest request = context.getRequest();
         HttpServletResponse response = context.getResponse();
@@ -81,7 +81,11 @@ public class PostFilter extends ZuulFilter {
             //
 
         } catch (Exception e) {
-            throw new ZuulException(e, INTERNAL_SERVER_ERROR.value(), e.getMessage());
+            try {
+                throw new ZuulException(e, INTERNAL_SERVER_ERROR.value(), e.getMessage());
+            } catch (ZuulException zuulException) {
+                zuulException.printStackTrace();
+            }
         }
 
 

@@ -4,19 +4,28 @@ server:
 spring:
   application:
     name: zuul
-#  autoconfigure:
-#    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
-  datasource:
-    username: zuul
-    password: zuuldatasource
-
-
-zuul:
 #  routes:
 #    service-a:
 #      path: /service-a/**
 #      serviceId: service-a
 #      stripPrefix: false
+#  autoconfigure:
+#    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+#  datasource:
+#    username: zuul
+#    password: zuuldatasource
+
+
+zuul:
+  ignored-services: '*'
+  routes:
+    service-a:
+      path: /service-a/**
+      serviceId: service-a
+      stripPrefix: false
+#  SendErrorFilter:
+#    error:
+#    disabled: true
   ratelimit:
     enabled: true
     repository: BUCKET4J_JCACHE
@@ -26,11 +35,11 @@ zuul:
       response-status-code: 404
     policy-list:
       service-a:
-        - limit: 3
-          refresh-interval: 10
+        - limit: 10
+          refresh-interval: 60
           type:
             - origin
-    strip-prefix: true
+#    strip-prefix: true
   ribbonIsolationStrategy: THREAD
   tread-pool:
     useSeparateThreadPools: true
@@ -66,7 +75,7 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 1000
+            timeoutInMilliseconds: 10000
 #      circuitBreaker:
 #        enabled: true
 #        requestVolumeThreshold: 3
@@ -85,8 +94,8 @@ hystrix:
 #        isolation:
 #          thread:
 #            timeoutInMilliseconds: 10000
-  dashboard:
-    proxy-stream-allow-list: '*'
+#  dashboard:
+#    proxy-stream-allow-list: '*'
 
 #management:
 #  endpoints:
@@ -94,19 +103,21 @@ hystrix:
 #      exposure:
 #        include: '*'
 
-#logging:
-#  level:
-#    org:
-#      springframework:
-#        web: debug
+logging:
+  level:
+#    org.springframework.web: debug
+    com.netflix.loadbalancer.LoadBalancerContext: debug
 
 
 
 service-a:
   ribbon:
+    listOfServers:
+      localhost:8181, localhost:8281
+    NIWSServerListClassName: com.netflix.niws.loadbalancer.DiscoveryEnabledNIWSServerList
     ConnectTimeout: 1000
-    ReadTimeout: 3000
-    MaxTotalHttpConnections: 500
+    ReadTimeout: 1000
+    MaxTotalHttpConnections: 300
     MaxConnectionsPerHost: 100
     MaxAutoRetriesNextServer: 1
 

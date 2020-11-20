@@ -31,10 +31,10 @@ public class PreFilter extends ZuulFilter {
 
     @Override
     public Object run() throws ZuulException {
-
+//    public Object run() {
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
-
+        System.out.println("pre");
         logger.info("Logger>>>>>> PreFilter");
         logger.info(String.format("Logger>>>>>> %s request to %s", request.getMethod(), request.getRequestURL().toString()));
 

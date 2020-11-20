@@ -16,13 +16,18 @@ eureka:
 
 hystrix:
   command:
-    veryWelcome:
+    default:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 3000
+            timeoutInMilliseconds: 10000
+#    veryWelcome:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 3000
       circuitBreaker:
-        requestVolumeThreshold: 10
+        requestVolumeThreshold: 20
         errorThresholdPercentage: 50
 
 service-b:

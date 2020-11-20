@@ -58,10 +58,10 @@ public class ZuulApplication {
 		return new PostFilter();
 	}
 
-	@Bean
-	public ErrorFilter errorFilter() {
-		return new ErrorFilter();
-	}
+//	@Bean
+//	public ErrorFilter errorFilter() {
+//		return new ErrorFilter();
+//	}
 
 
 	@Bean
