@@ -5,32 +5,32 @@ spring:
   application:
     name: service-a
 
-eureka:
-  instance:
-    prefer-ip-address: true
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka  # default address
-    register-with-eureka: true
-
-
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 10000
-#    veryWelcome:
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka  # default address
+#    register-with-eureka: true
+#
+#
+#hystrix:
+#  command:
+#    default:
 #      execution:
 #        isolation:
 #          thread:
-#            timeoutInMilliseconds: 3000
-      circuitBreaker:
-        requestVolumeThreshold: 20
-        errorThresholdPercentage: 50
-
-service-b:
-  ribbon:
-    MaxAutoRetries: 0
-    MaxAutoRetriesNextServer: 1
+#            timeoutInMilliseconds: 10000
+##    veryWelcome:
+##      execution:
+##        isolation:
+##          thread:
+##            timeoutInMilliseconds: 3000
+#      circuitBreaker:
+#        requestVolumeThreshold: 20
+#        errorThresholdPercentage: 50
+#
+#service-b:
+#  ribbon:
+#    MaxAutoRetries: 0
+#    MaxAutoRetriesNextServer: 1
