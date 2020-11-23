@@ -49,13 +49,12 @@ public class AServiceController {
         Socket socket = new Socket();
 
         try {
-            System.out.println(InetAddress.getLocalHost().getHostName());
-            System.out.println(InetAddress.getLocalHost().getHostAddress());
-            System.out.println(InetAddress.getLocalHost().getAddress());
+            return "Host Name: "+InetAddress.getLocalHost().getHostName() + ", Host Address: "+InetAddress.getLocalHost().getHostAddress();
         } catch (UnknownHostException e) {
             e.printStackTrace();
+            return "done";
         }
-        return "done";
+
     }
 
 }
