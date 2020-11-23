@@ -49,6 +49,7 @@ public class AServiceController {
         Socket socket = new Socket();
 
         try {
+
             return "Host Name: "+InetAddress.getLocalHost().getHostName() + ", Host Address: "+InetAddress.getLocalHost().getHostAddress();
         } catch (UnknownHostException e) {
             e.printStackTrace();

@@ -17,7 +17,7 @@ public class BServiceController {
     @GetMapping("/welcome/{username}")
     public String welcome(@PathVariable String username) {
         //Fallback Check
-//        throw new RuntimeException("I/O Exception");
-        return "Welcome To Hello World! \t"+username;
+        throw new RuntimeException("I/O Exception");
+//        return "Welcome To Hello World! \t"+username;
     }
 }
