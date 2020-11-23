@@ -3,6 +3,7 @@ package com.direa.zuul.filter;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
+import org.apache.http.HttpStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.client.RestTemplate;
@@ -71,7 +72,13 @@ public class PreFilter extends ZuulFilter {
        String uri = request.getRequestURI();
         System.out.println("uri : "+uri);
 //
-
+        if(uri=="/service-b/test") {
+            logger.info("uri"+uri);
+            if(request.getParameter("testNo")==null){
+                logger.warn("missing params : "+uri);
+                throw new ZuulException("missing parameter : ", 400,  "missing \"testNo\"");
+            }
+        }
 
         System.out.println("pre");
         logger.info("Logger>>>>>> PreFilter");
