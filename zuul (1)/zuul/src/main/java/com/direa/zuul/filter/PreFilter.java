@@ -66,12 +66,11 @@ public class PreFilter extends ZuulFilter {
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
 
-        String uri = request.getRequestURI();
-        System.out.println("uri : "+uri);
-        System.out.println("request.getHeaderNames : "+request.getHeaderNames());
 
-        String username = "username";
-        System.out.println(request.getParameter(username));
+        //uri 오타 시 error 수정중
+       String uri = request.getRequestURI();
+        System.out.println("uri : "+uri);
+//
 
 
         System.out.println("pre");
