@@ -83,7 +83,8 @@ public class ErrorFilter extends SendErrorFilter {
             request.setAttribute("javax.servlet.error.status_code",
                     exception.getStatusCode());
 
-            logger.warn("Error during filtering-RateLimit Exceeded!!!!", exception.getThrowable()); //RateLimit 시 에러 메시지
+            logger.warn("Error during filtering-RateLimit Exceeded!!!!", exception.getThrowable()); //RateLimit 시 에러 메시지 로그
+            
             request.setAttribute("javax.servlet.error.exception",
                     exception.getThrowable());
 
