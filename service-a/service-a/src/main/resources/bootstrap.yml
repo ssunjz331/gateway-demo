@@ -13,4 +13,8 @@ management:
   endpoints:
     web:
       exposure:
-        include: '*'
+        include: refresh
+
+
+#    actuator:
+#      enabled: true

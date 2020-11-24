@@ -11,6 +11,7 @@ import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.netflix.zuul.filters.Route;
 import org.springframework.cloud.netflix.zuul.filters.RouteLocator;
 
@@ -32,7 +33,7 @@ import java.util.stream.Collectors;
 import static com.marcosbarbero.cloud.autoconfigure.zuul.ratelimit.support.RateLimitConstants.*;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 
-
+@RefreshScope
 public class PostFilter extends ZuulFilter {
 
     private Logger logger = LoggerFactory.getLogger(PostFilter.class);
@@ -55,8 +56,8 @@ public class PostFilter extends ZuulFilter {
     @Override
     public boolean shouldFilter() {
 
-//        return !RequestContext.getCurrentContext().containsKey(RATE_LIMIT_EXCEEDED);
-        return true;
+        return !RequestContext.getCurrentContext().containsKey(RATE_LIMIT_EXCEEDED);
+//        return true;
     }
 
     @Override
