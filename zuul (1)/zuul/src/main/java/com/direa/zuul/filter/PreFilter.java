@@ -72,26 +72,26 @@ public class PreFilter extends ZuulFilter {
         HttpServletResponse response = ctx.getResponse();
 
         //uri 오타 시 error 수정중
-       String uri = request.getRequestURI();
-        System.out.println("uri : "+uri);
-//
-        if(uri=="/service-b/test") {
-            logger.info("uri"+uri);
-            if(request.getParameter("testNo")==null){
-                logger.warn("missing params : "+uri);
-                throw new ZuulException("missing parameter : ", 400,  "missing \"testNo\"");
-            }
-        }
+//       String uri = request.getRequestURI();
+//        System.out.println("uri : "+uri);
+////
+//        if(uri=="/service-b/test") {
+//            logger.info("uri"+uri);
+//            if(request.getParameter("testNo")==null){
+//                logger.warn("missing params : "+uri);
+//                throw new ZuulException("missing parameter : ", 400,  "missing \"testNo\"");
+//            }
+//        }
 
 
         //
         RequestContext currentContext = RequestContext.getCurrentContext();
 
 
-        if (!rateLimiter.tryAcquire()) {
-            currentContext.setSendZuulResponse(false);
-            response.setStatus(HttpStatus.TOO_MANY_REQUESTS.value());
-        }
+//        if (!rateLimiter.tryAcquire()) {
+//            currentContext.setSendZuulResponse(false);
+//            response.setStatus(HttpStatus.TOO_MANY_REQUESTS.value());
+//        }
 
         System.out.println("pre");
         logger.info("Logger>>>>>> PreFilter");

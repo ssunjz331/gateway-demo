@@ -56,8 +56,8 @@ public class PostFilter extends ZuulFilter {
     @Override
     public boolean shouldFilter() {
 
-        return !RequestContext.getCurrentContext().containsKey(RATE_LIMIT_EXCEEDED);
-//        return true;
+//        return !RequestContext.getCurrentContext().containsKey(RATE_LIMIT_EXCEEDED);
+        return true;
     }
 
     @Override

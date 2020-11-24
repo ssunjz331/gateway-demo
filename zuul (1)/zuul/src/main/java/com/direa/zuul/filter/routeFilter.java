@@ -26,9 +26,9 @@ public class RouteFilter extends ZuulFilter {
     @Override
     public boolean shouldFilter() {
 
-//        return RequestContext.getCurrentContext().getRouteHost() != null
-//                && RequestContext.getCurrentContext().sendZuulResponse();
-        return true;
+        return RequestContext.getCurrentContext().getRouteHost() != null
+                && RequestContext.getCurrentContext().sendZuulResponse();
+//        return true;
     }
 
     @Override

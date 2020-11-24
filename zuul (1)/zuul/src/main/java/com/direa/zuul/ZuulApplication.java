@@ -37,10 +37,10 @@ import javax.cache.spi.CachingProvider;
 @EnableHystrixDashboard
 public class ZuulApplication {
 
-	@Autowired
-	private ServerProperties serverProperties;
-	@Autowired
-	private ZuulProperties zuulProperties;
+//	@Autowired
+//	private ServerProperties serverProperties;
+//	@Autowired
+//	private ZuulProperties zuulProperties;
 
 	@Bean
 	public PreFilter preFilter(){
