@@ -13,7 +13,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: refresh, info, health, hystrix.stream
+        include: "*"
 
 
 #    actuator:
