@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 
 @RefreshScope
 public class WelcomeRemoteServiceImpl implements WelcomeRemoteService {
-    
+
     /*
     *   config refresh :: curl -x post http://localhost:[port]/actuator/refresh  | v2.0이상
      */
@@ -29,13 +29,16 @@ public class WelcomeRemoteServiceImpl implements WelcomeRemoteService {
 
 
     @Override
-    @HystrixCommand(commandKey = "veryWelcome",fallbackMethod = "getWelcomeFallback",commandProperties = {
-            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "500"),
+    @HystrixCommand(commandKey = "veryWelcome",fallbackMethod = "getWelcomeFallback"
+//            ,
+//            commandProperties = {
+//            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "500"),
 //            @HystrixProperty(name = "metrics.rollingStats.timeInMilliseconds", value = "10000"),
 //            @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "10"),
 //            @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "5"),
 //            @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000")
-    })
+//    }
+    )
     public String veryWelcome(String username) {
         System.out.println("Welcome To Hello World!");
         logger.info(String.format("Logger>>>>>>>> Very Welcome Method Called!"));
@@ -43,8 +46,8 @@ public class WelcomeRemoteServiceImpl implements WelcomeRemoteService {
     }
 
     public String getWelcomeFallback(String username, Throwable t){
-        logger.info(String.format("Logger>>>>>>>> Exception="+t));
-        logger.info(String.format("Logger>>>>>>>> Fallback : "+ t.getMessage()));
+        logger.warn(String.format("Logger>>>>>>>> Exception="+t));
+
         return message;
     }
 }
