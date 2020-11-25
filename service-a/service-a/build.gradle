@@ -24,6 +24,7 @@ dependencies {
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-ribbon'
 	compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-hystrix-dashboard', version: '2.2.6.RELEASE'
 	compile('org.springframework.cloud:spring-cloud-config-client')
+	compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-bus-amqp', version: '1.1.0.RELEASE'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}

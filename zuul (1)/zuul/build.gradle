@@ -32,6 +32,7 @@ dependencies {
 	compile group: 'com.github.vladimir-bukhtoyarov', name: 'bucket4j-jcache', version: '4.9.0'
 	compile group: 'javax.cache', name: 'cache-api', version: '1.0.0'
 	compile group: 'com.hazelcast', name: 'hazelcast', version: '3.12.3'
+	compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-bus-amqp', version: '1.1.0.RELEASE'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}

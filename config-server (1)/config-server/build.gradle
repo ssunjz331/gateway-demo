@@ -23,6 +23,8 @@ dependencies {
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 	// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-config
 	compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-config', version: '1.2.2.RELEASE'
+	// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-bus-amqp
+	compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-bus-amqp', version: '1.1.0.RELEASE'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
