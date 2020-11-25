@@ -12,6 +12,11 @@ spring:
           uri: https://github.com/ssunjz331/spring-cloud-config-repository
       label: main
       enabled: false
+  rabbitmq:
+    host: localhost
+    port: 15672
+    username: guest
+    password: guest
 eureka:
   instance:
     prefer-ip-address: true

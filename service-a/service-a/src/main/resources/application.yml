@@ -4,6 +4,16 @@ server:
 spring:
   application:
     name: service-a
+  rabbitmq:
+    host: localhost
+    port: 15672
+    username: guest
+    password: guest
+  cloud:
+    bus:
+      enabled: true
+      refresh:
+        enabled: true
 
 #eureka:
 #  instance:
