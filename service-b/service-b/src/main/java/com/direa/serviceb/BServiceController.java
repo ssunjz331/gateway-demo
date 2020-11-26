@@ -13,16 +13,16 @@ import java.util.Enumeration;
 public class BServiceController {
 
     //수정 중
-    @GetMapping(path = "/test")
-    public String greeting(@RequestParam("testNo") String testNo, HttpServletRequest request){
-
-        Enumeration headerNames = request.getHeaderNames();
-        while(headerNames.hasMoreElements()) {
-            String name = (String) headerNames.nextElement();
-            String value = request.getHeader(name);
-
-            System.out.println(value);
-        }
+    @GetMapping(path = "/test/{testNo}")
+//    public String greeting(@RequestParam("testNo") String testNo, HttpServletRequest request){
+    public String greeting(@PathVariable String testNo){
+//        Enumeration headerNames = request.getHeaderNames();
+//        while(headerNames.hasMoreElements()) {
+//            String name = (String) headerNames.nextElement();
+//            String value = request.getHeader(name);
+//
+//            System.out.println(value);
+//        }
 
 
 
