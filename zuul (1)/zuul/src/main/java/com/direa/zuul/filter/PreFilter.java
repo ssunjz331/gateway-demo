@@ -5,9 +5,11 @@ import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 
+import io.github.bucket4j.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -61,6 +63,7 @@ public class PreFilter extends ZuulFilter {
 
 
 
+
         return true;
     }
 
@@ -85,7 +88,7 @@ public class PreFilter extends ZuulFilter {
 
 
         //
-        RequestContext currentContext = RequestContext.getCurrentContext();
+//        RequestContext currentContext = RequestContext.getCurrentContext();
 
 
 //        if (!rateLimiter.tryAcquire()) {
@@ -93,14 +96,10 @@ public class PreFilter extends ZuulFilter {
 //            response.setStatus(HttpStatus.TOO_MANY_REQUESTS.value());
 //        }
 
+
         System.out.println("pre");
         logger.info("Logger>>>>>> PreFilter");
         logger.info(String.format("Logger>>>>>> %s request to %s", request.getMethod(), request.getRequestURL().toString()));
-
-
-
-
-
 
 
         return null;

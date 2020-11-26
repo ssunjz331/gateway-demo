@@ -1,6 +1,6 @@
 package com.direa.zuul.filter;
 
-import com.direa.zuul.fallback.GatewayClientResponse;
+//import com.direa.zuul.fallback.GatewayClientResponse;
 //import com.direa.zuul.fallback.RateLimitFallback;
 import com.marcosbarbero.cloud.autoconfigure.zuul.ratelimit.support.RateLimitConstants;
 import com.marcosbarbero.cloud.autoconfigure.zuul.ratelimit.support.RateLimitExceededException;
