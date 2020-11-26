@@ -11,13 +11,15 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 @RefreshScope
+@Component
+@ConfigurationProperties(prefix="test2.message.detail")
 public class WelcomeRemoteServiceImpl implements WelcomeRemoteService {
 
     /*
-    *   config refresh :: curl -x post http://localhost:[port]/actuator/refresh  | v2.0이상
+    *   config refresh :: curl -x post http://localhost:[port]/actuator/refresh
      */
 
-    @Value("${fallback.message.detail}")
+    @Value("${test2.message.detail}")
     private String message;
 
     private final RestTemplate restTemplate;
