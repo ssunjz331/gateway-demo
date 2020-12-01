@@ -8,11 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Enumeration;
 
-@RefreshScope
+
 @RestController
 public class BServiceController {
 
-    //수정 중
+
     @GetMapping(path = "/test/{testNo}")
 //    public String greeting(@RequestParam("testNo") String testNo, HttpServletRequest request){
     public String greeting(@PathVariable String testNo){

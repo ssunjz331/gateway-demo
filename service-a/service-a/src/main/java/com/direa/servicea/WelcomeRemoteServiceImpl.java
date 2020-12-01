@@ -12,7 +12,6 @@ import org.springframework.web.client.RestTemplate;
 
 @RefreshScope
 @Component
-@ConfigurationProperties(prefix="test2.message.detail")
 public class WelcomeRemoteServiceImpl implements WelcomeRemoteService {
 
     /*
@@ -24,6 +23,8 @@ public class WelcomeRemoteServiceImpl implements WelcomeRemoteService {
 
     private final RestTemplate restTemplate;
     private Logger logger = LoggerFactory.getLogger(WelcomeRemoteServiceImpl.class);
+
+
 
     public WelcomeRemoteServiceImpl(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
@@ -51,5 +52,8 @@ public class WelcomeRemoteServiceImpl implements WelcomeRemoteService {
         logger.warn(String.format("Logger>>>>>>>> Exception="+t));
 
         return message;
+
     }
+
 }
+
