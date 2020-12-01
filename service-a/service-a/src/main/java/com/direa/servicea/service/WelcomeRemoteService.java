@@ -1,4 +1,4 @@
-package com.direa.servicea;
+package com.direa.servicea.service;
 
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 

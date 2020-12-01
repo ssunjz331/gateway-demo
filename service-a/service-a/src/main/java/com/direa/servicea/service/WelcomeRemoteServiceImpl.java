@@ -1,11 +1,11 @@
-package com.direa.servicea;
+package com.direa.servicea.service;
 
+import com.direa.servicea.configuration.CloudConfig;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -18,13 +18,16 @@ public class WelcomeRemoteServiceImpl implements WelcomeRemoteService {
     *   config refresh :: curl -x post http://localhost:[port]/actuator/refresh
      */
 
-    @Value("${test2.message.detail}")
-    private String message;
+//    @Value("${test2.message.detail}")
+//    private String message;
+
+
 
     private final RestTemplate restTemplate;
     private Logger logger = LoggerFactory.getLogger(WelcomeRemoteServiceImpl.class);
 
-
+    @Autowired
+    public CloudConfig config;
 
     public WelcomeRemoteServiceImpl(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
@@ -51,7 +54,8 @@ public class WelcomeRemoteServiceImpl implements WelcomeRemoteService {
     public String getWelcomeFallback(String username, Throwable t){
         logger.warn(String.format("Logger>>>>>>>> Exception="+t));
 
-        return message;
+//        return message;
+        return config.message();
 
     }
 

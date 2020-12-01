@@ -116,6 +116,19 @@ public class PreFilter extends ZuulFilter {
             ctx.setResponseStatusCode(HttpStatus.UNAUTHORIZED.value());
         }
 
+        //
+//        Object accessToken=request.getParameter("token");
+//        if (null==accessToken)
+//        {
+//            ctx.setSendZuulResponse(false);
+//            ctx.setResponseStatusCode(404);
+//            try {
+//                ctx.getResponse().getWriter().write("token is empty");
+//
+//            }catch (Exception e) { }
+//            return null;
+//        }
+
 
         return null;
     }
