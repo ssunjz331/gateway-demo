@@ -11,40 +11,40 @@ spring:
 #    password: zuuldatasource
 
 
-zuul:
-  strip-prefix: true
-  #   ignored-services: '*'
-  routes:
-    service-a:
-      path: /service-a/**
-      serviceId: service-a
-      stripPrefix: true
-    service-b:
-      path: /service-b/**
-      serviceId: service-b
-      stripPrefix: true
-
-  SendErrorFilter:
-    error:
-    disable: true
-
-    ratelimit:
-      enabled: true
-      repository: BUCKET4J_JCACHE
-      behind-proxy: true
-      add-response-headers: true
-      deny-request:
-        response-status-code: 404
-      policy-list:
-        service-a:
-          - limit: 10
-            refresh-interval: 60
-            type:
-              - origin
-
-    ribbonIsolationStrategy: THREAD
-    tread-pool:
-      useSeparateThreadPools: true
+#zuul:
+#  strip-prefix: true
+#  #   ignored-services: '*'
+#  routes:
+#    service-a:
+#      path: /service-a/**
+#      serviceId: service-a
+#      stripPrefix: true
+#    service-b:
+#      path: /service-b/**
+#      serviceId: service-b
+#      stripPrefix: true
+#
+#  SendErrorFilter:
+#    error:
+#    disable: true
+#
+#    ratelimit:
+#      enabled: true
+#      repository: BUCKET4J_JCACHE
+#      behind-proxy: true
+#      add-response-headers: true
+#      deny-request:
+#        response-status-code: 404
+#      policy-list:
+#        service-a:
+#          - limit: 10
+#            refresh-interval: 60
+#            type:
+#              - origin
+#
+#    ribbonIsolationStrategy: THREAD
+#    tread-pool:
+#      useSeparateThreadPools: true
 #  ribbon:
 #    eager-load:
 #      enabled: true
@@ -57,27 +57,27 @@ zuul:
 
 
 
-eureka:
-  instance:
-    non-secure-port: ${server.port}
-    preferIpAddress: true
-  client:
-    healthcheck: true
-    register-with-eureka: true
-    fetch-registry: true
-    registry-sync-retries: 5
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
+#eureka:
+#  instance:
+#    non-secure-port: ${server.port}
+#    preferIpAddress: true
+#  client:
+#    healthcheck: true
+#    register-with-eureka: true
+#    fetch-registry: true
+#    registry-sync-retries: 5
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka/
 
 
 
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 10000
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 10000
     #      circuitBreaker:
     #        enabled: true
     #        requestVolumeThreshold: 3
@@ -86,11 +86,11 @@ hystrix:
     #      metrics:
     #        rollingStats:
     #          timeInMilliseconds: 10000
-    service-a:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 10000
+#    service-a:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 10000
 #    service-b:
 #      execution:
 #        isolation:
@@ -105,20 +105,24 @@ hystrix:
 #      exposure:
 #        include: '*'
 
-logging:
-  level:
-    #    org.springframework.web: debug
-    com.netflix.loadbalancer.LoadBalancerContext: debug
+#logging:
+#  level:
+#    #    org.springframework.web: debug
+#    com.netflix.loadbalancer.LoadBalancerContext: debug
 
-
-
-service-a:
-  ribbon:
-    listOfServers:
-      localhost:8181, localhost:8281
-    NIWSServerListClassName: com.netflix.niws.loadbalancer.DiscoveryEnabledNIWSServerList
-    ConnectTimeout: 1000
-    ReadTimeout: 1000
-    MaxTotalHttpConnections: 300
-    MaxConnectionsPerHost: 100
-    MaxAutoRetriesNextServer: 1
+#turbine:
+#  appConfig: service-a,service-b    # 모니터 원하는 서비스 나열(eureka에 등록되어 있어야 함)
+#  clusterNameExpression: new String('default')
+#
+#
+#
+#service-a:
+#  ribbon:
+#    listOfServers:
+#      localhost:8181, localhost:8281
+#    NIWSServerListClassName: com.netflix.niws.loadbalancer.DiscoveryEnabledNIWSServerList
+#    ConnectTimeout: 1000
+#    ReadTimeout: 1000
+#    MaxTotalHttpConnections: 300
+#    MaxConnectionsPerHost: 100
+#    MaxAutoRetriesNextServer: 1

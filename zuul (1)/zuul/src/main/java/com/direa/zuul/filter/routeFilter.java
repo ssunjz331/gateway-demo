@@ -9,6 +9,11 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 
+/*
+    routefilter - apache httpclient를 사용하여 정해전 url로 보낼 수 있고, ribbon 사용 동적 라우팅 가능
+ */
+
+
 public class RouteFilter extends ZuulFilter {
 
     private final Logger logger = LoggerFactory.getLogger(getClass().getName());

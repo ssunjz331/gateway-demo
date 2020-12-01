@@ -33,14 +33,17 @@ import java.util.stream.Collectors;
 import static com.marcosbarbero.cloud.autoconfigure.zuul.ratelimit.support.RateLimitConstants.*;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 
+/*
+    postfilter - response에 http header추가 하거나 response에 대한 응답속도, status code 등
+                    응답에 대한 statistics and metrics 수집
+    logging is possible in this project.
+ */
+
 @RefreshScope
 public class PostFilter extends ZuulFilter {
 
     private Logger logger = LoggerFactory.getLogger(PostFilter.class);
     private RestTemplate restTemplate = new RestTemplate();
-
-
-
 
 
     @Override

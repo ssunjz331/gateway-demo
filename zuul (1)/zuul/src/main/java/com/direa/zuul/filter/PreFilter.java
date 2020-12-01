@@ -8,6 +8,7 @@ import com.netflix.zuul.exception.ZuulException;
 import io.github.bucket4j.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
@@ -17,6 +18,10 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/*
+    prefilter - 주로 logging이나 인증 기능.
+    logging is possible in this project.
+ */
 
 public class PreFilter extends ZuulFilter {
     private static Logger logger =  LoggerFactory.getLogger(PreFilter.class);
@@ -97,9 +102,19 @@ public class PreFilter extends ZuulFilter {
 //        }
 
 
+
         System.out.println("pre");
         logger.info("Logger>>>>>> PreFilter");
         logger.info(String.format("Logger>>>>>> %s request to %s", request.getMethod(), request.getRequestURL().toString()));
+
+
+        String authorizationHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
+        if (!validateToken(authorizationHeader)) {
+            ctx.setSendZuulResponse(false);
+            ctx.setResponseBody("API key not authorized");
+            ctx.getResponse().setHeader("Content-Type", "text/plain;charset=UTF-8");
+            ctx.setResponseStatusCode(HttpStatus.UNAUTHORIZED.value());
+        }
 
 
         return null;
@@ -107,6 +122,10 @@ public class PreFilter extends ZuulFilter {
 
 
 
+    private boolean validateToken(String tokenHeader) {
+        // do something to validate the token
+        return true;
+    }
 
 
 

@@ -17,6 +17,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
+
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.cloud.netflix.zuul.filters.RouteLocator;
 import org.springframework.cloud.netflix.zuul.filters.ZuulProperties;
@@ -37,10 +38,6 @@ import javax.cache.spi.CachingProvider;
 @EnableHystrixDashboard
 public class ZuulApplication {
 
-//	@Autowired
-//	private ServerProperties serverProperties;
-//	@Autowired
-//	private ZuulProperties zuulProperties;
 
 	@Bean
 	public PreFilter preFilter(){
@@ -62,10 +59,7 @@ public class ZuulApplication {
 	public ErrorFilter errorFilter() {
 		return new ErrorFilter();
 	}
-//	@Bean
-//	public PrintHeaderFilter printHeaderFilter(){
-//		return new PrintHeaderFilter();
-//	}
+
 
 
 	@Bean
@@ -80,10 +74,6 @@ public class ZuulApplication {
 
 		return cacheManager.createCache("RateLimit", config);
 	}
-
-
-
-
 
 	public static void main(String[] args) {
 		SpringApplication.run(ZuulApplication.class, args);
